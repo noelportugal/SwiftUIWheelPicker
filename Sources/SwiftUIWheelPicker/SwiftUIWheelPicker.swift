@@ -9,13 +9,19 @@ enum Direction {
 public struct SwiftUIWheelPicker: View {
     @Binding var selectedIndex: Int
     var items: [String]
-    let circleSize: Double
+    var circleSize: Double
     @State private var radius : Double = 150
     @State private var direction = Direction.up
     @State private var degree : Double = 90.0
 
     var selectedDegree: Double {
         90.0 + Double(360/items.count) * Double(selectedIndex)
+    }
+    
+    public init(selectedIndex: Binding<Int>, items: [String] = [], circleSize: Double){
+        self._selectedIndex = selectedIndex
+        self.items = items
+        self.circleSize = circleSize
     }
         
     public var body: some View {
